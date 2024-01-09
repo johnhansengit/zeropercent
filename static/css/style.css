@@ -1,0 +1,45 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+  
+main {
+    flex: 1 0 auto;
+}
+
+footer.page-footer {
+    padding: 10px;
+    text-align: center;
+}
+
+video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+}
+  
+.card-img {
+    flex: 1;
+    padding: 10px;
+    box-shadow: -2px 2px 8px 2px #d1d1d1;
+}
+
+.card-img img {
+    width: 100%;
+}
+
+.card-text {
+    flex: 3;
+}
