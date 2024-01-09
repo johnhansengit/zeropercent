@@ -11,6 +11,8 @@ main {
 footer.page-footer {
     padding: 10px;
     text-align: center;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: 100;
 }
 
 video {
@@ -21,6 +23,16 @@ video {
     top: 0;
     left: 0;
     z-index: -1;
+}
+
+h1 {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: 400;
+}
+
+.navbar-fixed {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: 100;
 }
 
 .card-content {
