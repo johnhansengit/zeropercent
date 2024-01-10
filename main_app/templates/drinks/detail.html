@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load custom_filters %}
+
+<h1>drink list</h1>
+
+  <div class="card">
+    <div class="card-content">
+        <div class="card-img">
+            <img src="{{ drink.img }}" alt="">
+        </div>
+        <div class="card-text">
+            <span class="card-title">{{ drink.name }}</span>
+            <p>Category: {{ drink.category }}</p>
+            <p>Ingredients:</p>
+              <ul class="ingredient-list">
+                {% for ingredient in drink.ingredients|split:"," %}
+                <li>{{ ingredient }}</li>
+                {% endfor %}
+              </ul>
+            {% if drink.instructions %}  
+            <p>Instructions: {{ drink.instructions|linebreaks }}</p>
+            {% endif %}
+            <p>Difficulty: {{ drink.difficulty }}</p>
+            {% if drink.prep <= 15 %}
+            <p>Prep Time: quick</p>
+            {% else %}
+            <p>Prep Time: long</p>
+            {% endif %}
+        </div>
+    </div>
+  </div>
+
+{% endblock %}

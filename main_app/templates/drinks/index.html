@@ -5,22 +5,23 @@
 
 {% for drink in drinks %}
   <div class="card">
-    <div class="card-content">
-        <div class="card-img">
-            <img src="{{ drink.img }}" alt="">
-        </div>
-        <div class="card-text">
-            <span class="card-title">{{ drink.name }}</span>
-            <p>Category: {{ drink.category }}</p>
-            <p>Ingredients: {{ drink.ingredients }}</p>
-            <p>Difficulty: {{ drink.difficulty }}</p>
-            {% if drink.prep <= 15 %}
-              <p>Prep Time: quick</p>
-            {% else %}
-              <p>Prep Time: long</p>
-            {% endif %}
-        </div>
-    </div>
+    <a href="{% url 'detail' drink.id %}">
+      <div class="card-content">
+          <div class="card-img">
+              <img src="{{ drink.img }}" alt="">
+          </div>
+          <div class="card-text">
+              <span class="card-title">{{ drink.name }}</span>
+              <p>Category: {{ drink.category }}</p>
+              <p>Difficulty: {{ drink.difficulty }}</p>
+              {% if drink.prep <= 15 %}
+                <p>Prep Time: quick</p>
+              {% else %}
+                <p>Prep Time: long</p>
+              {% endif %}
+          </div>
+      </div>
+    </a>
   </div>
 {% endfor %}
 

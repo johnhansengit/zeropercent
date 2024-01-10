@@ -11,6 +11,21 @@
 - Postgres
 
 
+#### **_To Do_**
+- bullet points for ingredients
+- add instructions
+- symbols for difficulty
+- limit difficulty inputs to 1-4
+- formula to transform prep time into hours and minutes
+- get rid of blue color on <a> for drink list, add hover effect instead
+- style h1
+- style colors
+- style detail content to be two columns or similar
+- style key to be different to value in index and detail views
+- style/content for Home and About pages
+- fix issue of img container expanding downward to fill space
+
+
 #### **_Planned Future Updates_**
 
 
