@@ -43,6 +43,37 @@ h1 {
     font-weight: 100;
 }
 
+.nav-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#logo-area {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    font-size: 36px;
+}
+
+#logo-img {
+    height: 90%;
+    display: block;
+}
+
+.right {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.right li a {
+    font-size: 20px;
+}
+
 .card-content {
     display: flex;
     flex-direction: row;
