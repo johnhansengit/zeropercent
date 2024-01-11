@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% load custom_filters %}
+
 <h1>drink list</h1>
 
 {% for drink in drinks %}
@@ -13,13 +15,10 @@
           <div class="card-text">
               <span class="card-title">{{ drink.name }}</span>
               <p>Category: {{ drink.category }}</p>
-              <p>Difficulty: {{ drink.difficulty }}</p>
-              {% if drink.prep <= 15 %}
-                <p>Prep Time: quick</p>
-              {% else %}
-                <p>Prep Time: long</p>
-              {% endif %}
-          </div>
+              <p>Difficulty: {{ drink.get_difficulty_display }}</p>
+              <p>Prep Time: {{ drink.prep|convert_to_hours_minutes }}</p>
+              <p>Average Rating: {{ drink.average_rating }}</p>
+            </div>
       </div>
     </a>
   </div>

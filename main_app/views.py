@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
+from django.db.models import Avg
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Recipe
+from .models import Recipe, Review
 from .forms import ReviewForm
 
 def home(request):
@@ -11,9 +12,16 @@ def about(request):
 
 def drinks_index(request):
   drinks = Recipe.objects.all()
+
+  for drink in drinks:
+    reviews = Review.objects.filter(recipe=drink)
+    average_rating = reviews.aggregate(Avg('stars'))['stars__avg']
+    drink.average_rating = round(average_rating, 1) if average_rating is not None else '(no ratings)'
+
   return render(request, 'drinks/index.html', {
     'drinks': drinks
-  })
+})
+
 
 def drinks_detail(request, drink_id):
   drink = Recipe.objects.get(id=drink_id)

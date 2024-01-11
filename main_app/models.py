@@ -15,8 +15,8 @@ class Recipe(models.Model):
     ingredients = models.TextField(max_length=1000)
     instructions = models.TextField(blank=True)
     difficulty = models.IntegerField(choices=DIFFICULTIES, default=DIFFICULTIES[0][0])
-    prep = models.IntegerField('prep time', null=True, blank=True)
-    img = models.URLField('feature photo', max_length=1000, blank=True)
+    prep = models.IntegerField('prep time (in minutes)', null=True, blank=True)
+    img = models.URLField('feature photo (url)', max_length=1000, blank=True)
 
     def __str__(self):
         return self.name

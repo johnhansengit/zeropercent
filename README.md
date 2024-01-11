@@ -12,15 +12,13 @@
 
 
 #### **_To Do_**
-- add instructions to drinks I already have
-- add reviews to reviews I already have
+- add instructions and ingredient quantities to drinks I already have
 - content for Home pages
 
 - have recipes, products, experiences pages, with add options at the top of each one? and different databases?
 
 - symbols for difficulty
 - symbols for stars
-- formula to transform prep time into hours and minutes
 - Have category be a dropdown list? Have 'add new category' option?
 
 - bullet points for ingredients

@@ -23,11 +23,7 @@
             <p>Instructions: {{ drink.instructions|linebreaks }}</p>
             {% endif %}
             <p>Difficulty: {{ drink.get_difficulty_display }}</p>
-            {% if drink.prep <= 15 %}
-            <p>Prep Time: quick</p>
-            {% else %}
-            <p>Prep Time: long</p>
-            {% endif %}
+            <p>Prep Time: {{ drink.prep|convert_to_hours_minutes }}</p>
         </div>
     </div>
     <div class="card-action">

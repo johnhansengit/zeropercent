@@ -2,9 +2,9 @@
 
 {% block content %}
     {% if object %}
-        <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
+        <h2>edit drink</h3>
     {% else %}
-        <h1>add a drink</h1>
+        <h2>add a drink</h2>
     {% endif %}
 
   <form action="" method="POST">
@@ -12,7 +12,13 @@
     <table>
       {{ form.as_table }}
     </table>
-    <input type="submit" value="Submit!" class="btn">
+    <br>
+    <input type="submit" value="submit!" class="btn">
   </form>
+
+  <script>
+    const selectEl = document.getElementById('id_difficulty');
+    M.FormSelect.init(selectEl);
+  </script>
 
 {% endblock %}
