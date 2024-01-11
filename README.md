@@ -12,21 +12,31 @@
 
 
 #### **_To Do_**
-- bullet points for ingredients
-- add instructions
+- add instructions to drinks I already have
+- content for Home pages
+
+- have recipes, products, experiences pages, with add options at the top of each one? and different databases?
+
 - symbols for difficulty
 - limit difficulty inputs to 1-4
 - formula to transform prep time into hours and minutes
+- Have category be a dropdown list? Have 'add new category' option?
+
+- bullet points for ingredients
 - get rid of blue color on <a> for drink list, add hover effect instead
 - style h1
 - style colors
 - style detail content to be two columns or similar
 - style key to be different to value in index and detail views
-- style/content for Home and About pages
+- style Home and About pages
 - fix issue of img container expanding downward to fill space
+- Style add, edit, delete pages
+- add/edit page: prep time in minutes
 
 
 #### **_Planned Future Updates_**
+- [ ] Auto-import recipes from other websites
+- [ ] Filter experiences by location, cost, rating, etc.
 
 
 #### **_Credits_**
