@@ -25,13 +25,15 @@
 - bullet points for ingredients
 - get rid of blue color on <a> for drink list, add hover effect instead
 - style h1
-- style colors
+- style colors (incl. gradient for header/footer bar)
 - style detail content to be two columns or similar
 - style key to be different to value in index and detail views
 - style Home and About pages
 - fix issue of img container expanding downward to fill space
 - Style add, edit, delete pages
 - add/edit page: prep time in minutes
+
+- on about page, link to latest American/Canadian/British/Australian guidelines on alcohol consumption?
 
 
 #### **_Planned Future Updates_**
