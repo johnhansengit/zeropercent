@@ -2,6 +2,13 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 
+class Category(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Recipe(models.Model):
     DIFFICULTIES = (
         (1, 'so easy!'),
@@ -11,7 +18,7 @@ class Recipe(models.Model):
     )
     
     name = models.CharField(max_length=100)
-    category = models.CharField(max_length=100)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     ingredients = models.TextField(max_length=1000)
     instructions = models.TextField(blank=True)
     difficulty = models.IntegerField(choices=DIFFICULTIES, default=DIFFICULTIES[0][0])
@@ -23,6 +30,7 @@ class Recipe(models.Model):
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'drink_id': self.id})
+    
 
 class Review(models.Model):
     STARPICKER = (

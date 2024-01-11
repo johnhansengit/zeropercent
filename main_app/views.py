@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.db.models import Avg
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Recipe, Review
-from .forms import ReviewForm
+from .models import Recipe, Review, Category
+from .forms import ReviewForm, RecipeForm
 
 def home(request):
   return render(request, 'home.html')
@@ -41,11 +41,33 @@ def add_review(request, drink_id):
 
 class DrinkCreate(CreateView):
   model = Recipe
-  fields = '__all__'
+  form_class = RecipeForm
+
+  def form_valid(self, form):
+      new_category_name = form.cleaned_data['new_category']
+      if new_category_name:
+          category, created = Category.objects.get_or_create(name=new_category_name)
+          self.object = form.save(commit=False)
+          self.object.category = category
+          self.object.save()
+      else:
+          self.object = form.save()
+      return super(DrinkCreate, self).form_valid(form)
 
 class DrinkUpdate(UpdateView):
   model = Recipe
   fields = '__all__'
+
+  def form_valid(self, form):
+      new_category_name = form.cleaned_data.get('new_category', None)
+      if new_category_name:
+          category, created = Category.objects.get_or_create(name=new_category_name)
+          self.object = form.save(commit=False)
+          self.object.category = category
+          self.object.save()
+      else:
+          self.object = form.save()
+      return super(DrinkUpdate, self).form_valid(form)
 
 class DrinkDelete(DeleteView):
   model = Recipe

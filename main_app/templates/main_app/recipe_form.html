@@ -1,24 +1,49 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% if object %}
-        <h2>edit drink</h3>
-    {% else %}
-        <h2>add a drink</h2>
-    {% endif %}
+{% if object %}
+<h2>edit drink</h3>
+  {% else %}
+  <h2>add a drink</h2>
+  {% endif %}
 
   <form action="" method="POST">
     {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-    </table>
+
+    <div>
+      {{ form.name.label_tag }}
+      {{ form.name }}
+    </div>
+
+    <div>
+      {{ form.category.label_tag }}
+      {{ form.category }}
+    </div>
+
+    <div>
+      {{ form.new_category.label_tag }}
+      {{ form.new_category }}
+    </div>
+
+    {% for field in form %}
+      {% if field.name != 'name' and field.name != 'category' and field.name != 'new_category' %}
+        <div>
+          {{ field.label_tag }}
+          {{ field }}
+        </div>
+      {% endif %}
+    {% endfor %}
     <br>
     <input type="submit" value="submit!" class="btn">
   </form>
 
   <script>
-    const selectEl = document.getElementById('id_difficulty');
-    M.FormSelect.init(selectEl);
+    const difficulty = document.getElementById('id_difficulty');
+    M.FormSelect.init(difficulty);
+
+    const category = document.getElementById('id_category');
+    M.FormSelect.init(category);
+
   </script>
 
-{% endblock %}
+  {% endblock %}

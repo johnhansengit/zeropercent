@@ -12,14 +12,12 @@
 
 
 #### **_To Do_**
-- add instructions and ingredient quantities to drinks I already have
 - content for Home pages
 
 - have recipes, products, experiences pages, with add options at the top of each one? and different databases?
 
 - symbols for difficulty
 - symbols for stars
-- Have category be a dropdown list? Have 'add new category' option?
 
 - bullet points for ingredients
 - style reviews
@@ -45,4 +43,4 @@
 - Materialize CSS: [Materialize](materializecss.com)
 - Fonts: [Google Fonts](fonts.google.com)
 - Background gif: [Giphy.com](https://giphy.com/)
-- Recipes: [Food & Wine](https://www.foodandwine.com/strawberry-chile-balsamic-shrub-7369382)
+- Recipes: [Food & Wine](https://www.foodandwine.com/best-non-alcoholic-cocktails-7091945)
