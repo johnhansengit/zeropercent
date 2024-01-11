@@ -28,12 +28,13 @@
     <nav>
       <div class="nav-wrapper">
         <div id="logo-area">
-          <a href="/"><img id="logo-img" src="{% static 'img/logo.png' %}" alt=""></a>
-          <a href="/">zero percent</a>
+          <a href="{% url 'home' %}"><img id="logo-img" src="{% static 'img/logo.png' %}" alt=""></a>
+          <a href="{% url 'home' %}">zero percent</a>
         </div>
         <ul class="right">
-          <li><a href="/about">about</a></li>
-          <li><a href="/drinks">all drinks</a></li>
+          <li><a href="{% url 'about' %}">about</a></li>
+          <li><a href="{% url 'drinks_create' %}">add a drink</a></li>
+          <li><a href="{% url 'index' %}">all drinks</a></li>
         </ul>
       </div>
     </nav>

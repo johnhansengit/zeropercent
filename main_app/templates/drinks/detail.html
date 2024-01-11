@@ -30,6 +30,10 @@
             {% endif %}
         </div>
     </div>
+    <div class="card-action">
+      <a href="{% url 'drinks_update' drink.id %}">Edit</a>
+      <a href="{% url 'drinks_delete' drink.id %}">Delete</a>
+    </div>
   </div>
 
 {% endblock %}
