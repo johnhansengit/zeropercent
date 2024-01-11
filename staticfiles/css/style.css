@@ -45,6 +45,7 @@ h1 {
 
 h3 {
     font-weight: 100;
+    font-size: 30px;
 }
 
 .navbar-fixed {
@@ -102,4 +103,8 @@ h3 {
 
 .card-text {
     flex: 3;
+}
+
+.reviews-container {
+    padding: 10px 20px 20px;
 }
