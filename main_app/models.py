@@ -4,10 +4,10 @@ from django.utils import timezone
 
 class Recipe(models.Model):
     DIFFICULTIES = (
-        (1, '1: so easy'),
-        (2, '2: easy enough'),
-        (3, '3: a bit of work'),
-        (4, '4: takes some patience!'),
+        (1, 'so easy!'),
+        (2, 'easy enough'),
+        (3, 'takes a bit of work'),
+        (4, 'takes real patience!'),
     )
     
     name = models.CharField(max_length=100)
@@ -15,8 +15,8 @@ class Recipe(models.Model):
     ingredients = models.TextField(max_length=1000)
     instructions = models.TextField(blank=True)
     difficulty = models.IntegerField(choices=DIFFICULTIES, default=DIFFICULTIES[0][0])
-    prep = models.IntegerField(null=True, blank=True)
-    img = models.URLField(max_length=1000, blank=True)
+    prep = models.IntegerField('prep time', null=True, blank=True)
+    img = models.URLField('feature photo', max_length=1000, blank=True)
 
     def __str__(self):
         return self.name
@@ -41,4 +41,7 @@ class Review(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.reviewer} left a {self.get_stars_display()}-star rewview on {self.date}"
+        return f"{self.reviewer} left a {self.get_stars_display()}-star review on {self.date}"
+    
+    class Meta:
+        ordering = ['-date']

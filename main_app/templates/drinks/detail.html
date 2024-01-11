@@ -22,7 +22,7 @@
             {% if drink.instructions %}  
             <p>Instructions: {{ drink.instructions|linebreaks }}</p>
             {% endif %}
-            <p>Difficulty: {{ drink.difficulty }}</p>
+            <p>Difficulty: {{ drink.get_difficulty_display }}</p>
             {% if drink.prep <= 15 %}
             <p>Prep Time: quick</p>
             {% else %}
@@ -35,5 +35,43 @@
       <a href="{% url 'drinks_delete' drink.id %}">Delete</a>
     </div>
   </div>
+
+  <div class="card">
+    <div class="reviews-container">
+      <h3>reviews</h3>
+      <form action="{% url 'add_review' drink.id %}" method="POST">
+        {% csrf_token %}
+        {{ review_form.as_p }}
+        <input type="submit" class="btn" value="add a review">
+      </form>
+      {% if drink.review_set.exists %}
+        <table class="striped">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Reviewer</th>
+              <th>Stars</th>
+              <th>Review</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for review in drink.review_set.all %}
+              <tr>
+                <td>{{ review.date}}</td>
+                <td>{{ review.reviewer}}</td>
+                <td>{{ review.get_stars_display }}</td>
+                <td>{{ review.review }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+    </div>
+  </div>
+
+<script>
+  const selectEl = document.getElementById('id_stars');
+  M.FormSelect.init(selectEl);
+</script>
 
 {% endblock %}

@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Recipe
+from .forms import ReviewForm
 
 def home(request):
   return render(request, 'home.html')
@@ -16,9 +17,19 @@ def drinks_index(request):
 
 def drinks_detail(request, drink_id):
   drink = Recipe.objects.get(id=drink_id)
+  review_form = ReviewForm()
   return render(request, 'drinks/detail.html', {
-    'drink': drink
+    'drink': drink,
+    'review_form': review_form
   })
+
+def add_review(request, drink_id):
+  form = ReviewForm(request.POST)
+  if form.is_valid():
+    new_review = form.save(commit=False)
+    new_review.recipe_id = drink_id
+    new_review.save()
+  return redirect('detail', drink_id=drink_id)
 
 class DrinkCreate(CreateView):
   model = Recipe

@@ -13,18 +13,20 @@
 
 #### **_To Do_**
 - add instructions to drinks I already have
+- add reviews to reviews I already have
 - content for Home pages
 
 - have recipes, products, experiences pages, with add options at the top of each one? and different databases?
 
 - symbols for difficulty
-- limit difficulty inputs to 1-4
+- symbols for stars
 - formula to transform prep time into hours and minutes
 - Have category be a dropdown list? Have 'add new category' option?
 
 - bullet points for ingredients
+- style reviews
 - get rid of blue color on <a> for drink list, add hover effect instead
-- style h1
+- style h1, h2, h3
 - style colors (incl. gradient for header/footer bar)
 - style detail content to be two columns or similar
 - style key to be different to value in index and detail views
