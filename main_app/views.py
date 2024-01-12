@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.db.models import Avg
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Recipe, Review, Category
+from django.views.generic import ListView, DetailView
+from .models import Recipe, Review, Category, Product, Place
 from .forms import ReviewForm, RecipeForm
 
 def home(request):
@@ -72,3 +73,47 @@ class RecipeUpdate(UpdateView):
 class RecipeDelete(DeleteView):
   model = Recipe
   success_url = '/recipes'
+
+class ProductList(ListView):
+  model = Product
+
+class ProductDetail(DetailView):
+  model = Product
+
+class ProductCreate(CreateView):
+  model = Product
+  fields = '__all__'
+
+class ProductUpdate(UpdateView):
+  model = Product
+  fields = '__all__'
+
+class ProductDelete(DeleteView):
+  model = Product
+  success_url = '/products'
+
+class PlaceList(ListView):
+  model = Place
+
+class PlaceDetail(DetailView):
+  model = Place
+
+class PlaceCreate(CreateView):
+  model = Place
+  fields = ['name', 'open_hours', 'google_maps']
+
+class PlaceUpdate(UpdateView):
+  model = Place
+  fields = ['name', 'open_hours', 'google_maps']
+
+class PlaceDelete(DeleteView):
+  model = Place
+  success_url = '/places'
+
+def assoc_product(request, place_id, product_id):
+  Place.objects.get(id=place_id).products.add(product_id)
+  return redirect('detail', place_id=place_id)
+
+def disassoc_product(request, place_id, product_id):
+  Place.objects.get(id=place_id).products.remove(product_id)
+  return redirect('detail', place_id=place_id)

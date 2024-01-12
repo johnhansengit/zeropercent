@@ -12,6 +12,8 @@
 
 
 #### **_To Do_**
+- in place detail, show associated products and unassociated products
+
 - content for Home page
 
 - have recipes, products, experiences pages, with add options at the top of each one? and different databases?

@@ -3,7 +3,8 @@
 
 {% load custom_filters %}
 
-<h1>recipe list</h1>
+<h1>recipes</h1>
+<a href="{% url 'recipes_create' %}">add a recipe</a>
 
 {% for recipe in recipes %}
   <div class="card">
