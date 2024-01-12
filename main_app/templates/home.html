@@ -1,6 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>home</h1>
+{% load static %}
+
+<section id="welcome-container">
+    <div id="welcome-logo-container">
+        <img id="welcome-logo" src="{% static 'img/logo.png' %}" alt="">
+    </div>
+    <div id="welcome-text-container">
+        <h1>welcome to zero percent</h1>
+        <p>Lorem ipsum</p>
+        <a href="/about" class="btn">learn more</a>
+    </div>
+</section>
+
+<section id="promos-container">
+    <div id="promos">
+        <div class="promo">
+            <img src="" alt="">
+            <h3></h3>
+            <p></p>
+            <a href="/recipes" class="btn">more like this</a>
+        </div>
+        <div class="promo">
+            <img src="" alt="">
+            <h3></h3>
+            <p></p>
+            <a href="/products" class="btn">more like this</a>
+        </div>
+        <div class="promo">
+            <img src="" alt="">
+            <h3></h3>
+            <p></p>
+            <a href="/places" class="btn">more like this</a>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

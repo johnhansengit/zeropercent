@@ -1,3 +1,14 @@
+:root {
+    --lightpink: #ecccb8;
+    --pink: #e3a696;
+    --gold: #ebc27c;
+    --olive: #777a47;
+    --dusk: #747291;
+    --blackish: #4c4a25;
+    --whiteish: #fffbf5;
+    --greyish: #BEB7B4;
+}
+
 body {
     display: flex;
     min-height: 100vh;

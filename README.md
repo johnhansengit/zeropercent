@@ -20,6 +20,7 @@
 - move stars to corner of card, add to corner of reviews in detail view
 
 - have edit button go to custom form with add_category option
+- dry up code (e.g. confirm delete) with more base templates
 
 - STYLING PAGE BY PAGE
 - style add recipe/product/place links (make them buttons)

@@ -19,7 +19,7 @@ class Recipe(models.Model):
     
     name = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
-    ingredients = models.TextField(max_length=1000)
+    ingredients = models.TextField('ingredients (separate by commas)', max_length=1000)
     instructions = models.TextField(blank=True)
     difficulty = models.IntegerField(choices=DIFFICULTIES, default=DIFFICULTIES[0][0])
     prep = models.IntegerField('prep time (in minutes)', null=True, blank=True)
