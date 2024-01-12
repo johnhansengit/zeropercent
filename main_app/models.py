@@ -53,3 +53,36 @@ class Review(models.Model):
     
     class Meta:
         ordering = ['-date']
+
+class Product(models.Model):
+    PRODUCTTYPES = (
+        (1, '0% beer'),
+        (1, '0% wine'),
+        (1, '0% gin'),
+        (1, '0% rum'),
+        (1, '0% vodka'),
+        (1, '0% tequila'),
+        (1, '0% whiskey'),
+    )
+    name = models.CharField(max_length=100)
+    type = models.IntegerField(choices=PRODUCTTYPES, default=PRODUCTTYPES[0][0])
+
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'product_id': self.id})
+    
+    class Meta:
+        ordering = ['name']
+
+class Place(models.Model):
+    name = models.CharField(max_length=100)
+    open_hours = models.CharField('open hours (.e.g. M-F, 4p-2a)', max_length=100, blank=True)
+    google_maps = models.URLField('Google Maps (url)', max_length=1000, blank=True)
+
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'place_id': self.id})

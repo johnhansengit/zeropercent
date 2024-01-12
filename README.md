@@ -12,12 +12,14 @@
 
 
 #### **_To Do_**
-- content for Home pages
+- content for Home page
 
 - have recipes, products, experiences pages, with add options at the top of each one? and different databases?
 
 - symbols for difficulty
 - symbols for stars
+
+- have edit button go to custom form with add_category option
 
 - bullet points for ingredients
 - style reviews
@@ -29,7 +31,6 @@
 - style Home and About pages
 - fix issue of img container expanding downward to fill space
 - Style add, edit, delete pages
-- add/edit page: prep time in minutes
 
 - on about page, link to latest American/Canadian/British/Australian guidelines on alcohol consumption?
 
