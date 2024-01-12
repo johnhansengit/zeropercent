@@ -95,8 +95,16 @@ class ProductDelete(DeleteView):
 class PlaceList(ListView):
   model = Place
 
-class PlaceDetail(DetailView):
-  model = Place
+def places_detail(request, place_id):
+  place = Place.objects.get(id=place_id)
+  
+  id_list = place.products.all().values_list('id')
+  products_place_doesnt_have = Product.objects.exclude(id__in=id_list)
+  
+  return render(request, 'main_app/place_detail.html', {
+    'place': place,
+    'products': products_place_doesnt_have
+  })
 
 class PlaceCreate(CreateView):
   model = Place
@@ -112,8 +120,8 @@ class PlaceDelete(DeleteView):
 
 def assoc_product(request, place_id, product_id):
   Place.objects.get(id=place_id).products.add(product_id)
-  return redirect('detail', place_id=place_id)
+  return redirect('places_detail', place_id=place_id)
 
 def disassoc_product(request, place_id, product_id):
   Place.objects.get(id=place_id).products.remove(product_id)
-  return redirect('detail', place_id=place_id)
+  return redirect('places_detail', place_id=place_id)

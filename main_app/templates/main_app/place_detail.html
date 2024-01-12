@@ -17,4 +17,53 @@
     </div>
   </div>
 </div>
+
+<hr>
+
+<div class="row">
+    <div class="col s6">
+      <h3>{{ place.name }}'s 0% products</h3>
+      {% if place.products.count %}
+        {% for product in place.products.all %}
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">
+                {{ product.name }}, {{ product.get_type_display }}
+              </span>
+            </div>
+            <div class="card-action">
+              <form action="{% url 'disassoc_product' place.id product.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn">remove</button>
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h5>no 0% products listed here yet</h5>
+      {% endif %}
+    </div>
+    <div class="col s6">
+      <h3>add 0% products to this location</h3>
+      {% if products.count %}
+        {% for product in products.all %}
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">
+                {{ product.name }}, {{ product.get_type_display }}
+              </span>
+            </div>
+            <div class="card-action">
+              <form action="{% url 'assoc_product' place.id product.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn">add</button>
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h5>{{place.name}} already has all available products</h5>
+      {% endif %}
+    </div>
+
 {% endblock %}

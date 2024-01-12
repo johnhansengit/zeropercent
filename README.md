@@ -13,16 +13,16 @@
 
 #### **_To Do_**
 - in place detail, show associated products and unassociated products
+- add upload photo option in addition to photo URL
 
 - content for Home page
-
-- have recipes, products, experiences pages, with add options at the top of each one? and different databases?
 
 - symbols for difficulty
 - symbols for stars
 
 - have edit button go to custom form with add_category option
 
+- style add recipe/product/place links (make them buttons)
 - bullet points for ingredients
 - style reviews
 - get rid of blue color on <a> for recipe list, add hover effect instead

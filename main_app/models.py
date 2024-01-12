@@ -57,14 +57,14 @@ class Review(models.Model):
 class Product(models.Model):
     PRODUCTTYPES = (
         (1, '0% beer'),
-        (1, '0% cider'),
-        (1, '0% wine'),
-        (1, '0% champagne'),
-        (1, '0% gin'),
-        (1, '0% rum'),
-        (1, '0% vodka'),
-        (1, '0% tequila'),
-        (1, '0% whiskey'),
+        (2, '0% cider'),
+        (3, '0% wine'),
+        (4, '0% champagne'),
+        (5, '0% gin'),
+        (6, '0% rum'),
+        (7, '0% vodka'),
+        (8, '0% tequila'),
+        (9, '0% whiskey'),
     )
     name = models.CharField(max_length=100)
     type = models.IntegerField(choices=PRODUCTTYPES, default=PRODUCTTYPES[0][0])
@@ -73,7 +73,7 @@ class Product(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'product_id': self.id})
+        return reverse('products_detail', kwargs={'pk': self.id})
     
     class Meta:
         ordering = ['name']
@@ -88,4 +88,4 @@ class Place(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'place_id': self.id})
+        return reverse('places_detail', kwargs={'pk': self.id})
