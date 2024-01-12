@@ -23,7 +23,7 @@
 
 - bullet points for ingredients
 - style reviews
-- get rid of blue color on <a> for drink list, add hover effect instead
+- get rid of blue color on <a> for recipe list, add hover effect instead
 - style h1, h2, h3
 - style colors (incl. gradient for header/footer bar)
 - style detail content to be two columns or similar

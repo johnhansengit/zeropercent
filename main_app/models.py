@@ -29,7 +29,7 @@ class Recipe(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'drink_id': self.id})
+        return reverse('detail', kwargs={'recipe_id': self.id})
     
 
 class Review(models.Model):
@@ -43,7 +43,7 @@ class Review(models.Model):
 
     reviewer = models.CharField(max_length=100)
     date = models.DateField(default=timezone.now)
-    stars = models.IntegerField(choices=STARPICKER, default=STARPICKER[0][0])
+    stars = models.IntegerField(choices=STARPICKER, default=STARPICKER[4][0])
     review = models.TextField(max_length=1000, blank=True)
 
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
@@ -57,7 +57,9 @@ class Review(models.Model):
 class Product(models.Model):
     PRODUCTTYPES = (
         (1, '0% beer'),
+        (1, '0% cider'),
         (1, '0% wine'),
+        (1, '0% champagne'),
         (1, '0% gin'),
         (1, '0% rum'),
         (1, '0% vodka'),

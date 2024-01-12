@@ -10,36 +10,36 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
-def drinks_index(request):
-  drinks = Recipe.objects.all()
+def recipes_index(request):
+  recipes = Recipe.objects.all()
 
-  for drink in drinks:
-    reviews = Review.objects.filter(recipe=drink)
+  for recipe in recipes:
+    reviews = Review.objects.filter(recipe=recipe)
     average_rating = reviews.aggregate(Avg('stars'))['stars__avg']
-    drink.average_rating = round(average_rating, 1) if average_rating is not None else '(no ratings)'
+    recipe.average_rating = round(average_rating, 1) if average_rating is not None else '(no ratings)'
 
-  return render(request, 'drinks/index.html', {
-    'drinks': drinks
+  return render(request, 'recipes/index.html', {
+    'recipes': recipes
 })
 
 
-def drinks_detail(request, drink_id):
-  drink = Recipe.objects.get(id=drink_id)
+def recipes_detail(request, recipe_id):
+  recipe = Recipe.objects.get(id=recipe_id)
   review_form = ReviewForm()
-  return render(request, 'drinks/detail.html', {
-    'drink': drink,
+  return render(request, 'recipes/detail.html', {
+    'recipe': recipe,
     'review_form': review_form
   })
 
-def add_review(request, drink_id):
+def add_review(request, recipe_id):
   form = ReviewForm(request.POST)
   if form.is_valid():
     new_review = form.save(commit=False)
-    new_review.recipe_id = drink_id
+    new_review.recipe_id = recipe_id
     new_review.save()
-  return redirect('detail', drink_id=drink_id)
+  return redirect('detail', recipe_id=recipe_id)
 
-class DrinkCreate(CreateView):
+class RecipeCreate(CreateView):
   model = Recipe
   form_class = RecipeForm
 
@@ -52,9 +52,9 @@ class DrinkCreate(CreateView):
           self.object.save()
       else:
           self.object = form.save()
-      return super(DrinkCreate, self).form_valid(form)
+      return super(RecipeCreate, self).form_valid(form)
 
-class DrinkUpdate(UpdateView):
+class RecipeUpdate(UpdateView):
   model = Recipe
   fields = '__all__'
 
@@ -67,8 +67,8 @@ class DrinkUpdate(UpdateView):
           self.object.save()
       else:
           self.object = form.save()
-      return super(DrinkUpdate, self).form_valid(form)
+      return super(RecipeUpdate, self).form_valid(form)
 
-class DrinkDelete(DeleteView):
+class RecipeDelete(DeleteView):
   model = Recipe
-  success_url = '/drinks'
+  success_url = '/recipes'
