@@ -13,6 +13,7 @@
 
 #### **_To Do_**
 - add upload photo option in addition to photo URL
+- embed google maps for places
 
 - content for Home page
 

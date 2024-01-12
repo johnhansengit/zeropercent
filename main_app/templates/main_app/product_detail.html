@@ -10,7 +10,7 @@
         <span class="card-title">{{ product.name }}</span>
         <p>{{ product.get_type_display }}</p>
       </div>
-      <div class="card-action">
+      <div class="card-action" id="card-action-override">
         <a href="{% url 'products_update' product.id %}">Edit <i class="material-icons">edit</i></a>
         <a href="{% url 'products_delete' product.id %}">Delete <i class="material-icons">delete</i></a>
       </div>

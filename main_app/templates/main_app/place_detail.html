@@ -10,7 +10,7 @@
         <span class="card-title">{{ place.name }}</span>
         <p>Open Hours: {{ place.open_hours }}</p>
       </div>
-      <div class="card-action">
+      <div class="card-action" id="card-action-override">
         <a href="{% url 'places_update' place.id %}">Edit <i class="material-icons">edit</i></a>
         <a href="{% url 'places_delete' place.id %}">Delete<i class="material-icons">delete</i></a>
       </div>

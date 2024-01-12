@@ -14,6 +14,15 @@ body {
     min-height: 100vh;
     flex-direction: column;
 }
+
+a {
+    color: var(--olive);
+}
+
+nav {
+    color: var(--whiteish);
+    background-image: linear-gradient(to bottom right, var(--lightpink), var(--pink));
+}
   
 main {
     flex: 1 0 auto;
@@ -24,14 +33,15 @@ footer.page-footer {
     text-align: center;
     font-family: 'Montserrat Alternates', sans-serif;
     font-weight: 100;
+    background-image: linear-gradient(to top left, var(--lightpink), var(--pink));
 }
 
 footer a {
-    color: white;
+    color: var(--whiteish);
 }
 
 footer a:hover {
-    color: skyblue;
+    color: var(--blackish);
 }
 
 video {
@@ -48,6 +58,7 @@ h1,
 h2, 
 h3 {
     font-family: 'Montserrat Alternates', sans-serif;
+    color: var(--dusk);
 }
 
 h1 {
@@ -77,6 +88,7 @@ h3 {
     width: 100%;
     justify-content: flex-start;
     font-size: 36px;
+    font-weight: 400;
 }
 
 #logo-img {
@@ -95,11 +107,16 @@ h3 {
     font-size: 20px;
 }
 
+.card {
+    background-color: var(--whiteish);
+}
+
 .card-content {
     display: flex;
     flex-direction: row;
     width: 100%;
     gap: 20px;
+    color: var(--blackish)
 }
   
 .card-img {
@@ -112,10 +129,38 @@ h3 {
     width: 100%;
 }
 
+.card-title {
+    transition: all 0.25s ease;
+}
+
+.card-title:hover {
+    color: var(--gold);
+}
+
 .card-text {
     flex: 3;
 }
 
+.btn {
+    background-image: linear-gradient(to bottom right, var(--gold), #c2a066);
+}
+
 .reviews-container {
     padding: 1px 20px 20px;
+}
+
+#card-action-override a {
+    color: var(--gold);
+}
+
+#card-action-override a:hover {
+    color: var(--dusk);
+}
+
+#ingredient-list {
+    margin: 0 20px 0;
+}
+
+#ingredient-list > li {
+    list-style-type: disc;
 }
