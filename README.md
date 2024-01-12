@@ -12,16 +12,16 @@
 
 
 #### **_To Do_**
-- in place detail, show associated products and unassociated products
 - add upload photo option in addition to photo URL
 
 - content for Home page
 
-- symbols for difficulty
-- symbols for stars
+- colors for difficulty
+- move stars to corner of card, add to corner of reviews in detail view
 
 - have edit button go to custom form with add_category option
 
+- STYLING PAGE BY PAGE
 - style add recipe/product/place links (make them buttons)
 - bullet points for ingredients
 - style reviews

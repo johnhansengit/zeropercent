@@ -2,7 +2,7 @@
 {% block content %}
 
 <h1>places</h1>
-<a href="{% url 'places_create' %}">add a place</a>
+<a href="{% url 'places_create' %}"><i class="material-icons">add_circle_outline</i> add a place</a>
 
 {% for place in place_list %}
   <a href="{% url 'places_detail' place.id %}">

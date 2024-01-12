@@ -2,7 +2,7 @@
 {% block content %}
 
 <h1>products</h1>
-<a href="{% url 'products_create' %}">add a product</a>
+<a href="{% url 'products_create' %}"><i class="material-icons">add_circle_outline</i> add a product</a>
 
 {% for product in product_list %}
   <a href="{% url 'products_detail' product.id %}">

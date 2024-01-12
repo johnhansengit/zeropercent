@@ -17,7 +17,15 @@ def recipes_index(request):
   for recipe in recipes:
     reviews = Review.objects.filter(recipe=recipe)
     average_rating = reviews.aggregate(Avg('stars'))['stars__avg']
-    recipe.average_rating = round(average_rating, 1) if average_rating is not None else '(no ratings)'
+    
+    if average_rating is not None:
+      recipe.average_rating = round(int(average_rating))
+      recipe.stars_filled = range(recipe.average_rating)
+      recipe.stars_empty = range(5 - recipe.average_rating)
+    else:
+      recipe.average_rating = '(no ratings)'
+      recipe.stars_filled = []
+      recipe.stars_empty = []
 
   return render(request, 'recipes/index.html', {
     'recipes': recipes

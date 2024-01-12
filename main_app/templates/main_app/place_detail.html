@@ -11,8 +11,8 @@
         <p>Open Hours: {{ place.open_hours }}</p>
       </div>
       <div class="card-action">
-        <a href="{% url 'places_update' place.id %}">Edit</a>
-        <a href="{% url 'places_delete' place.id %}">Delete</a>
+        <a href="{% url 'places_update' place.id %}">Edit <i class="material-icons">edit</i></a>
+        <a href="{% url 'places_delete' place.id %}">Delete<i class="material-icons">delete</i></a>
       </div>
     </div>
   </div>
@@ -34,7 +34,7 @@
             <div class="card-action">
               <form action="{% url 'disassoc_product' place.id product.id %}" method="POST">
                 {% csrf_token %}
-                <button type="submit" class="btn">remove</button>
+                <button type="submit" class="btn">remove <i class="material-icons">remove_circle</i></button>
               </form>
             </div>
           </div>
@@ -56,7 +56,7 @@
             <div class="card-action">
               <form action="{% url 'assoc_product' place.id product.id %}" method="POST">
                 {% csrf_token %}
-                <button type="submit" class="btn">add</button>
+                <button type="submit" class="btn">add <i class="material-icons">add_circle</i></button>
               </form>
             </div>
           </div>

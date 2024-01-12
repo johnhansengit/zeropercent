@@ -4,7 +4,7 @@
 {% load custom_filters %}
 
 <h1>recipes</h1>
-<a href="{% url 'recipes_create' %}">add a recipe</a>
+<a href="{% url 'recipes_create' %}"><i class="material-icons">add_circle_outline</i> add a recipe</a>
 
 {% for recipe in recipes %}
   <div class="card">
@@ -18,7 +18,18 @@
               <p>Category: {{ recipe.category }}</p>
               <p>Difficulty: {{ recipe.get_difficulty_display }}</p>
               <p>Prep Time: {{ recipe.prep|convert_to_hours_minutes }}</p>
-              <p>Average Rating: {{ recipe.average_rating }}</p>
+              <p>Average Rating: 
+                {% if recipe.average_rating != '(no ratings)' %}
+                  {% for _ in recipe.stars_filled %}
+                    <i class="material-icons">star</i>
+                  {% endfor %}
+                  {% for _ in recipe.stars_empty %}
+                    <i class="material-icons">star_border</i>
+                  {% endfor %}
+                {% else %}
+                  {{ recipe.average_rating }}
+                {% endif %}
+              </p>
             </div>
       </div>
     </a>

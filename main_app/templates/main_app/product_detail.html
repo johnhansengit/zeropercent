@@ -11,8 +11,8 @@
         <p>{{ product.get_type_display }}</p>
       </div>
       <div class="card-action">
-        <a href="{% url 'products_update' product.id %}">Edit</a>
-        <a href="{% url 'products_delete' product.id %}">Delete</a>
+        <a href="{% url 'products_update' product.id %}">Edit <i class="material-icons">edit</i></a>
+        <a href="{% url 'products_delete' product.id %}">Delete <i class="material-icons">delete</i></a>
       </div>
     </div>
   </div>
