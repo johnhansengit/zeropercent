@@ -9,11 +9,24 @@
       <div class="card-content">
         <span class="card-title">{{ place.name }}</span>
         <p>Open Hours: {{ place.open_hours }}</p>
+        <p>Address: {{ place.address }}</p>
       </div>
       <div class="card-action" id="card-action-override">
         <a href="{% url 'places_update' place.id %}">Edit <i class="material-icons">edit</i></a>
         <a href="{% url 'places_delete' place.id %}">Delete<i class="material-icons">delete</i></a>
       </div>
+    </div>
+  </div>
+
+  <div class="col s6">
+    <div class="card">
+        <div class="card-content">
+            {% if place.address %}
+                <div id="map" style="height: 400px; width: 100%;"></div>
+            {% else %}
+                <em>No address info to display map</em>
+            {% endif %}
+        </div>
     </div>
   </div>
 </div>
@@ -65,5 +78,35 @@
         <h5>{{place.name}} already has all available products</h5>
       {% endif %}
     </div>
+
+
+{% if place.address %}
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key={{ maps_api }}&callback=initMap">
+    </script>
+{% endif %}
+
+<script>
+    var map;
+    function initMap() {
+        const geocoder = new google.maps.Geocoder();
+        const address = "{{ place.address }}";
+    
+        geocoder.geocode({'address': address}, function(results, status) {
+            if (status === 'OK') {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: results[0].geometry.location
+                });
+                new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } else {
+                console.error('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
+</script>   
 
 {% endblock %}

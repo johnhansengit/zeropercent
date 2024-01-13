@@ -81,7 +81,7 @@ class Product(models.Model):
 class Place(models.Model):
     name = models.CharField(max_length=100)
     open_hours = models.CharField('open hours (.e.g. M-F, 4p-2a)', max_length=100, blank=True)
-    google_maps = models.URLField('Google Maps (url)', max_length=1000, blank=True)
+    address = models.CharField(max_length=300, blank=True)
     products = models.ManyToManyField(Product)
 
     def __str__(self):

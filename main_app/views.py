@@ -4,6 +4,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import Recipe, Review, Category, Product, Place
 from .forms import ReviewForm, RecipeForm
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  
 
 def home(request):
   return render(request, 'home.html')
@@ -108,19 +112,22 @@ def places_detail(request, place_id):
   
   id_list = place.products.all().values_list('id')
   products_place_doesnt_have = Product.objects.exclude(id__in=id_list)
+
+  google_maps_api_key = os.environ.get('GOOGLE_MAPS_API_KEY')
   
   return render(request, 'main_app/place_detail.html', {
     'place': place,
-    'products': products_place_doesnt_have
+    'products': products_place_doesnt_have,
+    'maps_api': google_maps_api_key,
   })
 
 class PlaceCreate(CreateView):
   model = Place
-  fields = ['name', 'open_hours', 'google_maps']
+  fields = ['name', 'open_hours', 'address']
 
 class PlaceUpdate(UpdateView):
   model = Place
-  fields = ['name', 'open_hours', 'google_maps']
+  fields = ['name', 'open_hours', 'address']
 
 class PlaceDelete(DeleteView):
   model = Place
