@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>place details</h1>
+<div class="details-header">
+    <h1>place details</h1>
+    <h3><a href="/places" id="back-link"><i class="material-icons translate-12">arrow_back</i> back to places</a></h3>
+</div>
 
 <div class="row">
   <div class="col s6 col-offset-3">
     <div class="card">
       <div class="card-content">
-        <span class="card-title">{{ place.name }}</span>
-        <p>Open Hours: {{ place.open_hours }}</p>
-        <p>Address: {{ place.address }}</p>
+        <div id="place-card-content" style="height: 140px;">
+            <span class="card-title">{{ place.name }}</span>
+            <p><span style="font-weight: 600;">Open Hours:</span> {{ place.open_hours }}</p>
+            <p><span style="font-weight: 600;">Address:</span> {{ place.address }}</p>
+        </div>
       </div>
       <div class="card-action" id="card-action-override">
-        <a href="{% url 'places_update' place.id %}">Edit <i class="material-icons">edit</i></a>
-        <a href="{% url 'places_delete' place.id %}">Delete<i class="material-icons">delete</i></a>
+        <a href="{% url 'places_update' place.id %}">Edit <i class="material-icons translate-30">edit</i></a>
+        <a href="{% url 'places_delete' place.id %}">Delete<i class="material-icons translate-30">delete</i></a>
       </div>
     </div>
   </div>
@@ -22,7 +27,7 @@
     <div class="card">
         <div class="card-content">
             {% if place.address %}
-                <div id="map" style="height: 400px; width: 100%;"></div>
+                <div id="map" style="height: 200px; width: 100%;"></div>
             {% else %}
                 <em>No address info to display map</em>
             {% endif %}
@@ -35,7 +40,7 @@
 
 <div class="row">
     <div class="col s6">
-      <h3>{{ place.name }}'s 0% products</h3>
+      <h3>0% products at this location</h3>
       {% if place.products.count %}
         {% for product in place.products.all %}
           <div class="card">
@@ -47,7 +52,7 @@
             <div class="card-action">
               <form action="{% url 'disassoc_product' place.id product.id %}" method="POST">
                 {% csrf_token %}
-                <button type="submit" class="btn">remove <i class="material-icons">remove_circle</i></button>
+                <button type="submit" class="btn">remove <i class="material-icons translate-12">remove_circle</i></button>
               </form>
             </div>
           </div>
@@ -57,7 +62,7 @@
       {% endif %}
     </div>
     <div class="col s6">
-      <h3>add 0% products to this location</h3>
+      <h3 style="text-align: right">add products to this location</h3>
       {% if products.count %}
         {% for product in products.all %}
           <div class="card">
@@ -69,7 +74,7 @@
             <div class="card-action">
               <form action="{% url 'assoc_product' place.id product.id %}" method="POST">
                 {% csrf_token %}
-                <button type="submit" class="btn">add <i class="material-icons">add_circle</i></button>
+                <button type="submit" class="btn">add <i class="material-icons translate-12">add_circle</i></button>
               </form>
             </div>
           </div>

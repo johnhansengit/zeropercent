@@ -13,9 +13,9 @@
 
 #### **_To Do_**
 - add upload photo option in addition to photo URL
-- embed google maps for places
 
 - content for Home page
+- hover colors for add a recipe etc and back to recipes etc
 
 - colors for difficulty
 - move stars to corner of card, add to corner of reviews in detail view
@@ -24,17 +24,9 @@
 - dry up code (e.g. confirm delete) with more base templates
 
 - STYLING PAGE BY PAGE
-- style add recipe/product/place links (make them buttons)
-- bullet points for ingredients
-- style reviews
-- get rid of blue color on <a> for recipe list, add hover effect instead
-- style h1, h2, h3
-- style colors (incl. gradient for header/footer bar)
+- style all add, edit, delete pages (incl reviews form on recipe details)
 - style detail content to be two columns or similar
-- style key to be different to value in index and detail views
 - style Home and About pages
-- fix issue of img container expanding downward to fill space
-- Style add, edit, delete pages
 
 - on about page, link to latest American/Canadian/British/Australian guidelines on alcohol consumption?
 
@@ -45,6 +37,7 @@
 
 
 #### **_Credits_**
+- Logo: DALL-E 3[DALL-E 3](https://openai.com/dall-e-3)
 - Materialize CSS: [Materialize](materializecss.com)
 - Fonts: [Google Fonts](fonts.google.com)
 - Background gif: [Giphy.com](https://giphy.com/)

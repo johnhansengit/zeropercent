@@ -39,6 +39,21 @@ def recipes_index(request):
 def recipes_detail(request, recipe_id):
   recipe = Recipe.objects.get(id=recipe_id)
   review_form = ReviewForm()
+
+  reviews = Review.objects.filter(recipe=recipe)
+  average_rating = reviews.aggregate(Avg('stars'))['stars__avg']
+  if average_rating is not None:
+    recipe.average_rating = round(int(average_rating))
+    recipe.stars_filled = range(recipe.average_rating)
+    recipe.stars_empty = range(5 - recipe.average_rating)
+  else:
+    recipe.average_rating = '(no ratings)'
+    recipe.stars_filled = []
+    recipe.stars_empty = []
+  
+  for review in reviews:
+    recipe.stars_range = range(review.stars)
+  
   return render(request, 'recipes/detail.html', {
     'recipe': recipe,
     'review_form': review_form
@@ -69,7 +84,7 @@ class RecipeCreate(CreateView):
 
 class RecipeUpdate(UpdateView):
   model = Recipe
-  fields = '__all__'
+  form_class = RecipeForm
 
   def form_valid(self, form):
       new_category_name = form.cleaned_data.get('new_category', None)

@@ -1,18 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>product details</h1>
+<div class="details-header">
+    <h1>product details</h1>
+    <h3><a href="/products" id="back-link"><i class="material-icons translate-12">arrow_back</i> back to products</a></h3>
+</div>
 
 <div class="row">
   <div class="col s6 col-offset-3">
     <div class="card">
-      <div class="card-content">
+      <div class="card-content product-card">
         <span class="card-title">{{ product.name }}</span>
         <p>{{ product.get_type_display }}</p>
       </div>
       <div class="card-action" id="card-action-override">
-        <a href="{% url 'products_update' product.id %}">Edit <i class="material-icons">edit</i></a>
-        <a href="{% url 'products_delete' product.id %}">Delete <i class="material-icons">delete</i></a>
+        <a href="{% url 'products_update' product.id %}">Edit <i class="material-icons translate-30">edit</i></a>
+        <a href="{% url 'products_delete' product.id %}">Delete <i class="material-icons translate-30">delete</i></a>
       </div>
     </div>
   </div>

@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>products</h1>
-<a href="{% url 'products_create' %}"><i class="material-icons">add_circle_outline</i> add a product</a>
+<div class="details-header">
+    <h1>products</h1>
+    <h3>
+        <a href="{% url 'products_create' %}"><i class="material-icons translate-12">add_circle_outline</i> add a product</a>
+    </h3>
+</div>
 
 {% for product in product_list %}
   <a href="{% url 'products_detail' product.id %}">
     <div class="card">
-        <div class="card-content">
+        <div class="card-content product-card">
             <span class="card-title">{{ product.name }}</span>
             <p>{{ product.get_type_display }}</p>
         </div>

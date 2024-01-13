@@ -7,34 +7,58 @@
   <h2>add a recipe</h2>
   {% endif %}
 
-  <form action="" method="POST">
+  <form class="two-col" action="" method="POST">
     {% csrf_token %}
 
-    <div>
-      {{ form.name.label_tag }}
-      {{ form.name }}
+    <div class="form-col">
+      <div>
+        {{ form.name.label_tag }}
+        {{ form.name }}
+      </div>
+  
+      <div>
+        {{ form.category.label_tag }}
+        {{ form.category }}
+      </div>
+  
+      <div>
+        {{ form.new_category.label_tag }}
+        {{ form.new_category }}
+      </div>
+
+      <div>
+        {{ form.difficulty.label_tag }}
+        {{ form.difficulty }}
+      </div>
+
+      <div>
+        {{ form.prep.label_tag }}
+        {{ form.prep }}
+      </div>
+
+      <div>
+        {{ form.photo.label_tag }}
+        {{ form.photo }}
+      </div>
     </div>
 
-    <div>
-      {{ form.category.label_tag }}
-      {{ form.category }}
-    </div>
+    <div class="form-col">
+      <div>
+        {{ form.ingredients.label_tag }}
+        {{ form.ingredients }}
+      </div>
 
-    <div>
-      {{ form.new_category.label_tag }}
-      {{ form.new_category }}
+      <div>
+        {{ form.instructions.label_tag }}
+        {{ form.instructions }}
+      </div>
+      
+      <br>
+      <div class="right-btn">
+        <input type="submit" value="submit!" class="btn">
+      </div>
     </div>
-
-    {% for field in form %}
-      {% if field.name != 'name' and field.name != 'category' and field.name != 'new_category' %}
-        <div>
-          {{ field.label_tag }}
-          {{ field }}
-        </div>
-      {% endif %}
-    {% endfor %}
-    <br>
-    <input type="submit" value="submit!" class="btn">
+    
   </form>
 
   <script>

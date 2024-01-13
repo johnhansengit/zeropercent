@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>places</h1>
-<a href="{% url 'places_create' %}"><i class="material-icons">add_circle_outline</i> add a place</a>
+<div class="details-header">
+    <h1>places</h1>
+    <h3>
+        <a href="{% url 'places_create' %}"><i class="material-icons translate-12">add_circle_outline</i> add a place</a>
+    </h3>
+</div>
 
 {% for place in place_list %}
   <a href="{% url 'places_detail' place.id %}">
     <div class="card">
-        <div class="card-content">
+        <div class="card-content product-card">
             <span class="card-title">{{ place.name }}</span>
             <p>Open Hours: {{ place.open_hours }}</p>
         </div>

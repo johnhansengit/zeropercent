@@ -3,48 +3,64 @@
 
 {% load custom_filters %}
 
-<h1>recipe list</h1>
+<div class="details-header">
+  <h1>recipe details</h1>
+  <h3><a href="/recipes" id="back-link"><i class="material-icons translate-12">arrow_back</i> back to drink recipes</a>
+  </h3>
+</div>
 
-  <div class="card">
-    <div class="card-content">
-        <div class="card-img">
-            <img src="{{ recipe.img }}" alt="">
-        </div>
-        <div class="card-text">
-            <span class="card-title">{{ recipe.name }}</span>
-            <p>Category: {{ recipe.category }}</p>
-            <br>
-            <p>Ingredients:</p>
-              <ul id="ingredient-list">
-                {% for ingredient in recipe.ingredients|split:"," %}
-                <li>{{ ingredient }}</li>
-                {% endfor %}
-              </ul>
-            <br>
-            {% if recipe.instructions %}  
-            <p>Instructions: {{ recipe.instructions|linebreaks }}</p>
-            {% endif %}
-            <br>
-            <p>Difficulty: {{ recipe.get_difficulty_display }}</p>
-            <br>
-            <p>Prep Time: {{ recipe.prep|convert_to_hours_minutes }}</p>
-        </div>
+<div class="card">
+  <div class="card-content">
+    <div class="card-img">
+      <img src="{{ recipe.img }}" alt="">
     </div>
-    <div class="card-action" id="card-action-override">
-      <a href="{% url 'recipes_update' recipe.id %}">Edit <i class="material-icons">edit</i></a>
-      <a href="{% url 'recipes_delete' recipe.id %}">Delete <i class="material-icons">delete</i></a>
+    <div class="card-text">
+      <div class="card-title-container">
+        <span class="card-title">{{ recipe.name }}</span>
+        <div class="avg-rating">
+          {% if recipe.average_rating != '(no ratings)' %}
+            {% for _ in recipe.stars_filled %}
+              <i class="material-icons translate-30">star</i>
+            {% endfor %}
+            {% for _ in recipe.stars_empty %}
+              <i class="material-icons translate-30">star_border</i>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      <br>
+      <p><span class="bold">Category:</span> {{ recipe.category }}</p>
+      <br>
+      <p><span class="bold">Ingredients:</span></p>
+      <ul id="ingredient-list">
+        {% for ingredient in recipe.ingredients|split:"," %}
+        <li>{{ ingredient }}</li>
+        {% endfor %}
+      </ul>
+      <br>
+      {% if recipe.instructions %}
+      <p class="bold">Instructions:</p>
+      <p class="instructions">{{ recipe.instructions|linebreaks }}</p>
+      {% endif %}
+      <br>
+      <p><span class="bold">Difficulty:</span> {{ recipe.get_difficulty_display }}</p>
+      <br>
+      <p><span class="bold">Prep Time:</span> {{ recipe.prep|convert_to_hours_minutes }}</p>
     </div>
   </div>
+  <div class="card-action" id="card-action-override">
+    <a href="{% url 'recipes_update' recipe.id %}">Edit <i class="material-icons translate-30">edit</i></a>
+    <a href="{% url 'recipes_delete' recipe.id %}">Delete <i class="material-icons translate-30">delete</i></a>
+  </div>
+</div>
 
-  <div class="card">
-    <div class="reviews-container">
-      <h3>reviews</h3>
-      <form action="{% url 'add_review' recipe.id %}" method="POST">
-        {% csrf_token %}
-        {{ review_form.as_p }}
-        <input type="submit" class="btn" value="add a review">
-      </form>
-      {% if recipe.review_set.exists %}
+<div class="card">
+  <div class="reviews-container">
+    <div id="reviews-plus-form">
+
+      <div id="reviews">
+        <h3>reviews</h3>
+        {% if recipe.review_set.exists %}
         <table class="striped">
           <thead>
             <tr>
@@ -56,18 +72,33 @@
           </thead>
           <tbody>
             {% for review in recipe.review_set.all %}
-              <tr>
-                <td>{{ review.date}}</td>
-                <td>{{ review.reviewer}}</td>
-                <td>{{ review.get_stars_display }}</td>
-                <td>{{ review.review }}</td>
-              </tr>
+            <tr>
+              <td>{{ review.date}}</td>
+              <td>{{ review.reviewer}}</td>
+              <!-- <td>{{ review.get_stars_display }}</td> -->
+              <td style="white-space: nowrap;">
+                {% for _ in recipe.stars_range %}
+                  <i class="material-icons tiny">star</i>
+                {% endfor %}
+            </td>
+              <td>{{ review.review }}</td>
+            </tr>
             {% endfor %}
           </tbody>
         </table>
-      {% endif %}
+        {% endif %}
+      </div>
+      <div id="review-form">
+        <h3>add a review</h3>
+        <form action="{% url 'add_review' recipe.id %}" method="POST">
+          {% csrf_token %}
+          {{ review_form.as_p }}
+          <input type="submit" class="btn" value="add a review">
+        </form>
+      </div>
     </div>
   </div>
+</div>
 
 <script>
   const selectEl = document.getElementById('id_stars');
