@@ -21,7 +21,7 @@ urlpatterns = [
     path('places/<int:place_id>/disassoc_product/<int:product_id>/', views.disassoc_product, name='disassoc_product'),
 
     path('places/', views.PlaceList.as_view(), name='places_index'),
-    path('places/<int:place_id>', views.places_detail, name='places_detail'),
+    path('places/<int:pk>', views.places_detail, name='places_detail'),
     path('places/create/', views.PlaceCreate.as_view(), name='places_create'),
     path('places/<int:pk>/update/', views.PlaceUpdate.as_view(), name='places_update'),
     path('places/<int:pk>/delete/', views.PlaceDelete.as_view(), name='places_delete'),
