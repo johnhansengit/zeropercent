@@ -1,4 +1,4 @@
-# zero percent [Live](zeropercent-c86589dc15a8.herokuapp.com)
+# zero percent [(live on heroku)](zeropercent-c86589dc15a8.herokuapp.com)
 ## Date: 01/09/2024
 ### By: John Hansen
 **[GitHub](https://github.com/johnhansengit) | [LinkedIn](https://www.linkedin.com/in/jhansen-software-engineer/)**
