@@ -97,7 +97,7 @@ class Place(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('places_detail', kwargs={'pk': self.id})
+        return reverse('places_detail', kwargs={'place_id': self.id})
     
     class Meta:
         ordering = ['name']
