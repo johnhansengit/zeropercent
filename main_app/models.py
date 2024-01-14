@@ -33,6 +33,9 @@ class Recipe(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'recipe_id': self.id})
     
+    class Meta:
+        ordering = ['name']
+    
 
 class Review(models.Model):
     STARPICKER = (
