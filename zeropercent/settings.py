@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -77,11 +78,9 @@ WSGI_APPLICATION = 'zeropercent.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'zeropercent',
-    }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
+
 
 
 # Password validation
