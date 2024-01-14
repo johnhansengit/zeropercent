@@ -1,1 +1,1 @@
-web: gunicorn zeropercent.wsgi --log-file -
+web: gunicorn zeropercent.wsgi
