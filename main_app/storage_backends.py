@@ -1,8 +1,9 @@
 from django.contrib.staticfiles.storage import StaticFilesStorage
 from django.utils.encoding import filepath_to_uri
 import os
+from whitenoise.storage import CompressedManifestStaticFilesStorage
 
-class CustomStaticFilesStorage(StaticFilesStorage):
+class CustomStaticFilesStorage(CompressedManifestStaticFilesStorage):
     def url(self, name):
         url = super().url(name)
         if name.endswith('.css') or name.endswith('.js'):
