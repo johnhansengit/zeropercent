@@ -182,8 +182,16 @@ h3 {
     align-items: baseline;
 }
 
+.details-header > h3 > a:hover {
+    color: var(--dusk);
+}
+
 #back-link {
     color: var(--dusk);
+}
+
+#back-link:hover {
+    color: var(--olive);
 }
 
 .translate-12 {
@@ -312,11 +320,11 @@ h3.welcome-header {
 }
 
 #review-form {
-    flex: 1;
+    flex: 25%;
 }
 
 #reviews {
-    flex: 2;
+    flex: 75%;
 }
 
 #id_review,

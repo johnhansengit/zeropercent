@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
@@ -23,7 +24,8 @@ class Recipe(models.Model):
     instructions = models.TextField(blank=True)
     difficulty = models.IntegerField(choices=DIFFICULTIES, default=DIFFICULTIES[0][0])
     prep = models.IntegerField('prep time (in minutes)', null=True, blank=True)
-    img = models.URLField('feature photo (url)', max_length=1000, blank=True)
+    img = models.URLField('or paste photo url', max_length=1000, null=True, blank=True)
+    uploaded_img = models.ImageField('feature photo', upload_to='recipe_photos/', blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -50,6 +52,10 @@ class Review(models.Model):
 
     def __str__(self):
         return f"{self.reviewer} left a {self.get_stars_display()}-star review on {self.date}"
+    
+    @property
+    def stars_range(self):
+        return range(self.stars)
     
     class Meta:
         ordering = ['-date']

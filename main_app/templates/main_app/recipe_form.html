@@ -7,7 +7,7 @@
   <h2>add a recipe</h2>
   {% endif %}
 
-  <form class="two-col" action="" method="POST">
+  <form class="two-col" action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div class="form-col">
@@ -37,9 +37,15 @@
       </div>
 
       <div>
-        {{ form.photo.label_tag }}
-        {{ form.photo }}
+        {{ form.uploaded_img.label_tag }}
+        {{ form.uploaded_img }}
       </div>
+      <br>
+      <div>
+        {{ form.img.label_tag }}
+        {{ form.img }}
+      </div>
+      
     </div>
 
     <div class="form-col">

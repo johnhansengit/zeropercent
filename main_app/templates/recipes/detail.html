@@ -12,7 +12,18 @@
 <div class="card">
   <div class="card-content">
     <div class="card-img">
-      <img src="{{ recipe.img }}" alt="">
+      {% if recipe.uploaded_img %}
+        <img src="{{ recipe.uploaded_img }}" alt="">
+      {% elif recipe.img %}
+        <img src="{{ recipe.img }}" alt="">
+      {% else %}
+        <div style="text-align: center;">
+          <br>
+          No photo uploaded
+          <br>
+          <i class="material-icons large">image</i>
+        </div>
+      {% endif %}
     </div>
     <div class="card-text">
       <div class="card-title-container">
@@ -66,7 +77,7 @@
             <tr>
               <th>Date</th>
               <th>Reviewer</th>
-              <th>Stars</th>
+              <th style="text-align: center;">Stars</th>
               <th>Review</th>
             </tr>
           </thead>
@@ -76,16 +87,18 @@
               <td>{{ review.date}}</td>
               <td>{{ review.reviewer}}</td>
               <!-- <td>{{ review.get_stars_display }}</td> -->
-              <td style="white-space: nowrap;">
-                {% for _ in recipe.stars_range %}
+              <td style="white-space: nowrap; text-align: center;">
+                {% for _ in review.stars_range %}
                   <i class="material-icons tiny">star</i>
                 {% endfor %}
-            </td>
+              </td>
               <td>{{ review.review }}</td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
+        {% else %}
+          No reviews yet
         {% endif %}
       </div>
       <div id="review-form">

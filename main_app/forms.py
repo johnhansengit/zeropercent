@@ -9,7 +9,7 @@ class ReviewForm(forms.ModelForm):
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        fields = ['name', 'category', 'ingredients', 'instructions', 'difficulty', 'prep', 'img']
+        fields = ['name', 'category', 'ingredients', 'instructions', 'difficulty', 'prep', 'img', 'uploaded_img']
 
     category = forms.ModelChoiceField(
         queryset=Category.objects.all(),

@@ -2,9 +2,9 @@
 
 {% block content %}
   {% if object %}
-    <h2>edit <span class="teal-text">{{object.name}}</span></h1>
+    <h2>edit product</h2>
   {% else %}
-    <h2>add a product</h1>
+    <h2>add a product</h2>
   {% endif %}
   <form action="" method="post">
     {% csrf_token %}

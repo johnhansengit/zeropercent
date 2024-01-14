@@ -15,7 +15,18 @@
     <a href="{% url 'detail' recipe.id %}">
       <div class="card-content">
           <div class="card-img">
+            {% if recipe.uploaded_img %}
+              <img src="{{ recipe.uploaded_img }}" alt="">
+            {% elif recipe.img %}
               <img src="{{ recipe.img }}" alt="">
+            {% else %}
+              <div style="text-align: center;">
+                <br>
+                No photo uploaded
+                <br>
+                <i class="material-icons large">image</i>
+              </div>
+            {% endif %}
           </div>
           <div class="card-text">
               <span class="card-title">{{ recipe.name }}</span>

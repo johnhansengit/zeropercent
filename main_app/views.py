@@ -4,6 +4,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import Recipe, Review, Category, Product, Place
 from .forms import ReviewForm, RecipeForm
+import uuid
+import boto3
 import os
 from dotenv import load_dotenv
 
@@ -51,9 +53,6 @@ def recipes_detail(request, recipe_id):
     recipe.stars_filled = []
     recipe.stars_empty = []
   
-  for review in reviews:
-    recipe.stars_range = range(review.stars)
-  
   return render(request, 'recipes/detail.html', {
     'recipe': recipe,
     'review_form': review_form
@@ -72,30 +71,67 @@ class RecipeCreate(CreateView):
   form_class = RecipeForm
 
   def form_valid(self, form):
-      new_category_name = form.cleaned_data['new_category']
-      if new_category_name:
-          category, created = Category.objects.get_or_create(name=new_category_name)
-          self.object = form.save(commit=False)
-          self.object.category = category
-          self.object.save()
-      else:
-          self.object = form.save()
-      return super(RecipeCreate, self).form_valid(form)
+    new_category_name = form.cleaned_data.get('new_category')
+    if new_category_name:
+        category, created = Category.objects.get_or_create(name=new_category_name)
+        self.object = form.save(commit=False)
+        self.object.category = category
+    else:
+        self.object = form.save(commit=False)
+
+    photo_file = form.cleaned_data.get('uploaded_img')
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            bucket = os.environ['S3_BUCKET']
+            s3.upload_fileobj(photo_file, bucket, key)
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            self.object.uploaded_img = url  
+            self.object.img = None
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+    elif form.cleaned_data.get('img'):
+        self.object.img = form.cleaned_data['img']
+        self.object.uploaded_img = None
+
+    self.object.save()
+    return super(RecipeCreate, self).form_valid(form)
+
 
 class RecipeUpdate(UpdateView):
   model = Recipe
   form_class = RecipeForm
 
   def form_valid(self, form):
-      new_category_name = form.cleaned_data.get('new_category', None)
-      if new_category_name:
-          category, created = Category.objects.get_or_create(name=new_category_name)
-          self.object = form.save(commit=False)
-          self.object.category = category
-          self.object.save()
-      else:
-          self.object = form.save()
-      return super(RecipeUpdate, self).form_valid(form)
+    new_category_name = form.cleaned_data.get('new_category')
+    if new_category_name:
+        category, created = Category.objects.get_or_create(name=new_category_name)
+        self.object = form.save(commit=False)
+        self.object.category = category
+    else:
+        self.object = form.save(commit=False)
+
+    photo_file = form.cleaned_data.get('uploaded_img')
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            bucket = os.environ['S3_BUCKET']
+            s3.upload_fileobj(photo_file, bucket, key)
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            self.object.uploaded_img = url  
+            self.object.img = None
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+    elif form.cleaned_data.get('img'):
+        self.object.img = form.cleaned_data['img']
+        self.object.uploaded_img = None
+
+    self.object.save()
+    return super(RecipeUpdate, self).form_valid(form)
 
 class RecipeDelete(DeleteView):
   model = Recipe
