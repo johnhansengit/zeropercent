@@ -98,3 +98,6 @@ class Place(models.Model):
     
     def get_absolute_url(self):
         return reverse('places_detail', kwargs={'pk': self.id})
+    
+    class Meta:
+        ordering = ['name']
